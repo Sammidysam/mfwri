@@ -13,7 +13,7 @@ module Mfwri
 		end
 		
 		def to_s
-			"#{@name}" + (@expand ? ":=" : "=") + "#{@value}" + super
+			"#{@name}" + (@expand ? ":=" : "=") + "#{@value}\n" + super
 		end
 	end
 end

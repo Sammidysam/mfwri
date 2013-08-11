@@ -9,7 +9,7 @@ module Mfwri
 		end
 		
 		def to_s
-			@blank_line_after ? "\n\n" : "\n"
+			@blank_line_after ? "\n" : ""
 		end
 	end
 end
