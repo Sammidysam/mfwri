@@ -1,1 +1,3 @@
-require "mfwri/makefile.rb"
+require "mfwri/makefile"
+require "mfwri/task"
+require "mfwri/variable"
