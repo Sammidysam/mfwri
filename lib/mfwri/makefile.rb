@@ -2,14 +2,38 @@ module Mfwri
 	class Makefile
 		attr_accessor :location
 	
-		attr_accessor :variables
-		attr_accessor :rules
+		attr_reader :variables
+		attr_reader :rules
 	
 		def initialize(options = {})
 			@location = options.has_key?(:location) ? options[:location] : "Makefile"
 			
 			@variables = options.has_key?(:variables) ? options[:variables] : Array.new
 			@rules = options.has_key?(:rules) ? options[:rules] : Array.new
+		end
+
+		def clear_vars
+			copy = Marshal.load(Marshal.dump(self))
+			
+			copy.clear_vars!
+
+			copy
+		end
+
+		def clear_vars!
+			@variables = Array.new
+		end
+
+		def clear_rules
+			copy = Marshal.load(Marshal.dump(self))
+
+			copy.clear_rules!
+
+			copy
+		end
+
+		def clear_rules!
+			@rules = Array.new
 		end
 
 		def add_var(variable)

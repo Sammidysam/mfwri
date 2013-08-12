@@ -2,14 +2,38 @@ require "mfwri/makefile_object"
 
 module Mfwri
 	class Rule < MakefileObject
-		attr_accessor :prerequisites
-		attr_accessor :recipe
+		attr_reader :prerequisites
+		attr_reader :recipe
 		
 		def initialize(name, options = {})
 			super(name, options.has_key?(:blank_line_after) ? options[:blank_line_after] : true)
 			
 			@prerequisites = options.has_key?(:prerequisites) ? options[:prerequisites] : Array.new
 			@recipe = options.has_key?(:recipe) ? options[:recipe] : Array.new
+		end
+
+		def clear_prereqs
+			copy = Marshal.load(Marshal.dump(self))
+
+			copy.clear_prereqs!
+
+			copy
+		end
+
+		def clear_prereqs!
+			@prerequisites = Array.new
+		end
+
+		def clear_recipe
+			copy = Marshal.load(Marshal.dump(self))
+
+			copy.clear_recipe!
+
+			copy
+		end
+
+		def clear_recipe!
+			@recipe = Array.new
 		end
 
 		def add_prereq(prerequisite)
