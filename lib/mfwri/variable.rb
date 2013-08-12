@@ -8,8 +8,8 @@ module Mfwri
 		def initialize(name, options = {})
 			super(name, options[:blank_line_after] || true)
 			
-			@value = options[:value] or nil
-			@expand = options[:expand] or false
+			@value = options[:value] || nil
+			@expand = options[:expand] || false
 		end
 		
 		def to_s
