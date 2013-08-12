@@ -44,13 +44,25 @@ class VariableTest < Minitest::Test
 	end
 
 	# test all the constructors
+	def test_con_no_name_given
+		assert_raises(ArgumentError) { Mfwri::Variable.new }
+	end
+	
 	def test_con_name_blank_line_after
 		var = Mfwri::Variable.new("TESTVAR", :blank_line_after => false)
 
 		assert_equal var.to_s, "TESTVAR=\n"
 	end
 
-	def test_con_no_name_given
-		assert_raises(ArgumentError) { Mfwri::Variable.new }
+	def test_con_name_value
+		var = Mfwri::Variable.new("TESTVAR", :value => "TESTVALUE")
+
+		assert_equal var.to_s, "TESTVAR=TESTVALUE\n\n"
+	end
+
+	def test_con_name_expand
+		var = Mfwri::Variable.new("TESTVAR", :expand => true)
+
+		assert_equal var.to_s, "TESTVAR:=\n\n"
 	end
 end

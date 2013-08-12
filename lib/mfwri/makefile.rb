@@ -59,6 +59,10 @@ module Mfwri
 
 			false
 		end
+
+		def weird?
+			weird_vars? or weird_rules?
+		end
 		
 		def to_s
 			makefile_string = "# Makefile written with mfwri\n\n"
