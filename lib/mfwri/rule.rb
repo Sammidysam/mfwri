@@ -6,10 +6,10 @@ module Mfwri
 		attr_accessor :recipe
 		
 		def initialize(name, options = {})
-			super(name, options[:blank_line_after] || true)
+			super(name, options.has_key?(:blank_line_after) ? options[:blank_line_after] : true)
 			
-			@prerequisites = options[:prerequisites] || Array.new
-			@recipe = options[:recipe] || Array.new
+			@prerequisites = options.has_key?(:prerequisites) ? options[:prerequisites] : Array.new
+			@recipe = options.has_key?(:recipe) ? options[:recipe] : Array.new
 		end
 		
 		def to_s

@@ -6,10 +6,10 @@ module Mfwri
 		attr_accessor :expand
 		
 		def initialize(name, options = {})
-			super(name, options[:blank_line_after] || true)
+			super(name, options.has_key?(:blank_line_after) ? options[:blank_line_after] : true)
 			
-			@value = options[:value] || nil
-			@expand = options[:expand] || false
+			@value = options.has_key?(:value) ? options[:value] : nil
+			@expand = options.has_key?(:expand) ? options[:expand] : false
 		end
 		
 		def to_s

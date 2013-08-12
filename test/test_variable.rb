@@ -3,7 +3,7 @@ require "mfwri"
 
 class VariableTest < Minitest::Test
 	def setup
-		@variable = Mfwri::Variable.new "TESTVARIABLE"
+		@variable = Mfwri::Variable.new("TESTVARIABLE")
 	end
 
 	# test changing all the options
@@ -45,7 +45,7 @@ class VariableTest < Minitest::Test
 
 	# test all the constructors
 	def test_con_name_blank_line_after
-		var = Mfwri::Variable.new "TESTVAR", :blank_line_after => false
+		var = Mfwri::Variable.new("TESTVAR", :blank_line_after => false)
 
 		assert_equal var.to_s, "TESTVAR=\n"
 	end

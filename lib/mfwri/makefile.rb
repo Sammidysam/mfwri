@@ -6,10 +6,10 @@ module Mfwri
 		attr_accessor :rules
 	
 		def initialize(options = {})
-			@location = options[:location] || "Makefile"
+			@location = options.has_key?(:location) ? options[:location] : "Makefile"
 			
-			@variables = options[:variables] || Array.new
-			@rules = options[:rules] || Array.new
+			@variables = options.has_key?(:variables) ? options[:variables] : Array.new
+			@rules = options.has_key?(:rules) ? options[:rules] : Array.new
 		end
 
 		def add_var(variable)
