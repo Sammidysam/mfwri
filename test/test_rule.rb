@@ -76,7 +76,7 @@ class RuleTest < Minitest::Test
 
 		weird = 17
 
-		normal.each { |prereq| @rule.add_prereq!(normal) } 
+		normal.each { |prereq| @rule.add_prereq!(prereq) } 
 		@rule.add_prereq! weird
 
 		assert @rule.weird_prereqs?
@@ -85,7 +85,7 @@ class RuleTest < Minitest::Test
 	end
 
 	def test_recipe_one_line
-		@rule.add_recipe! "gcc -c -o hi.o hi.c"
+		@rule.add_recipe_line! "gcc -c -o hi.o hi.c"
 
 		assert_equal @rule.to_s, "all:\n\tgcc -c -o hi.o hi.c\n\n"
 
@@ -94,5 +94,13 @@ class RuleTest < Minitest::Test
 
 	def test_recipe_multiple_lines
 		lines = Array.new(2)
+
+		lines[0] = "gcc -c -o hi.o hi.c"
+		lines[1] = "gcc -o hi hi.o"
+		lines.each { |line| @rule.add_recipe_line!(line) }
+
+		assert_equal @rule.to_s, "all:\n\tgcc -c -o hi.o hi.c\n\tgcc -o hi hi.o\n\n"
+
+		@rule.clear_recipe!
 	end
 end

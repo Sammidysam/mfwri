@@ -48,7 +48,7 @@ module Mfwri
 			@prerequisites << prerequisite
 		end
 
-		def add_recipe(line)
+		def add_recipe_line(line)
 			copy = Marshal.load(Marshal.dump(self))
 
 			copy.recipe << line
@@ -56,7 +56,7 @@ module Mfwri
 			copy
 		end
 
-		def add_recipe!(line)
+		def add_recipe_line!(line)
 			@recipe << line
 		end
 
